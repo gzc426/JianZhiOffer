@@ -1,0 +1,64 @@
+>考试结束，班级平均分只拿到了年级第二，班主任于是问道:大家都知道世界第一高峰珠穆朗玛峰，有人知道世界第二高峰是什么吗？正当班主任要继续发话，只听到角落默默想起来一个声音:”乔戈里峰”
+
+### 前言
+
+>2018.11.24号打卡
+**今天的题目**用两个栈实现队列
+https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+
+# 昨天的题解
+### 题目
+
+>每天一道剑指offer-从尾到头打印链表：
+链接：
+https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+
+### 题目详述
+
+>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
+
+###题目详解
+
+>思路
+
+- 剑指offer的思路，递归的思路，只要链表不为空，一直往后进行遍历，然后直到到达链表的末尾，就开始用数组保存下来结果。
+>代码
+```
+/**
+*    public class ListNode {
+*        int val;
+*        ListNode next = null;
+*
+*        ListNode(int val) {
+*            this.val = val;
+*        }
+*    }
+*
+*/
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if(listNode == null)
+            return arrayList;
+        printListFromTailToHead(listNode,arrayList);
+        return arrayList;
+    }
+    public void printListFromTailToHead(ListNode listNode,ArrayList<Integer> list){
+        if(listNode.next != null)
+        {
+            printListFromTailToHead(listNode.next,list);
+        }
+        list.add(listNode.val);
+    }
+}
+```
+>代码讲解
+
+- 22-25行就是链表不是末尾节点，就一直往下递归，直到到达链表末尾那么就开始指向26行代码，然后再一层层往上回溯把每一个链表节点值保存了下来。
+
+### 结束语
+
+2018.11.24号打卡
+
+>作者乔戈里亲历2019秋招，哈工大计算机本硕，百度java工程师，欢迎大家关注我的**微信公众号：程序员乔戈里**，公众号有**3T编程资源**，以及我和我朋友（百度C++工程师）在秋招期间整理的近200M的面试必考的java与C++**面经**，并有**每天一道leetcode打卡群**与技术交流群，欢迎关注。
