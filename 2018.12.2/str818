@@ -1,0 +1,21 @@
+[题目描述](https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&tqId=11165&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)：给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+
+**解题思路：** 假设输入的指数为 32 ，普通的方法需要在循环中进行 31 次乘法，可以换一种思路：我们的目标是求出一个数字的 32 次方，如果知道了它的 16 次方，那么只要在 16 次方的基础上再平方一次就可以了，同理，也可以推导出输出指数为奇数时的算法。
+
+```java
+public double Power(double base, int exponent) {
+    if(exponent == 0) return 1;
+    if(exponent == 1) return base;
+        
+    boolean isN = false;
+    if(exponent < 0){
+        isN = true;
+        exponent = -exponent;
+    }
+        
+    double result = Power(base*base, exponent / 2);
+    if(exponent % 2 == 1) result *= base;
+        
+    return isN ? 1/result : result;
+}
+```
