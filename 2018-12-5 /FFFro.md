@@ -1,3 +1,4 @@
+```java
 public class Solution {
     public ListNode Merge(ListNode list1,ListNode list2) {
         if (list1 == null)
@@ -25,3 +26,4 @@ public class Solution {
         return res.next;
     }
 }
+```
