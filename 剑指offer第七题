@@ -1,0 +1,48 @@
+```
+/**
+  剑指offer上第7题
+  输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+  例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        if(pre.length==0||in.length==0){
+            return null;
+        }
+        return reConstructBinaryTree(pre ,in ,0,pre.length-1,0, in.length-1);
+        
+    }
+      //pstart 先序数组的起始位置，pend先序数组的末尾位置。istart，iend同理是中序数组的起始位置和终止位置
+      public TreeNode reConstructBinaryTree(int []pre ,int []in ,int pstart,int pend,int istart, int iend){
+       if(pstart>pend||istart>iend){
+           return null;
+       }
+       //建树的根节点
+      TreeNode root =new TreeNode(pstart);
+      int value= pre[pstart]; 
+      root.val=value;//根节点赋初始值
+      int i; //很重要，确定中序遍历中根节点的位置   
+      for(i=istart;i<in.length;i++){
+          if(in[i]==pre[pstart]){
+              break;//找到了就退出，此时的i位置就是根节点的位置，根据中序遍历的性质，根节点左边部分为左子树，右边部分为右子树。
+          }
+      }
+      //递归开始
+      //建立左子树，根据中序遍历中根位置的长度，确定先序中根节点之后左子树的范围。以及确定中序遍历中左子树的范围
+          //相当于回到起始从先序中序构建二叉树。（递归思路）
+      root.left=reConstructBinaryTree(pre,in,pstart+1,pstart+i-istart,istart,i-1);
+      //建立右子树    
+      root.right=reConstructBinaryTree(pre,in,pstart+i-istart+1,pend,i+1,iend);
+          
+      return root;
+      
+      }
+}
+```
