@@ -4,14 +4,12 @@
 */
 class Solution {
 public:
-    int calDepth(TreeNode* root){//求树的深度
+    int calDepth(TreeNode* root){
         if(root == NULL){
             return 0;
         }
         
-        int ld = calDepth(root->left);
-        int rd = calDepth(root->right);
-        return ld > rd ? ld+1 : rd+1;
+        return max( calDepth(root->left)+1, calDepth(root->right)+1 );
     }
     bool IsBalanced_Solution(TreeNode* pRoot) {
         if(pRoot == NULL){
