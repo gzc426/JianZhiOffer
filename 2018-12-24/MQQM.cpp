@@ -16,3 +16,11 @@ public:
         return cnt;
     }
 };
+//方法二：利用C++ stl的二分查找
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        auto resultPair = equal_range(data.begin(), data.end(),k);
+        return resultPair.second - resultPair.first;
+    }
+};
